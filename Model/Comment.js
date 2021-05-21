@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const sequelize = require('sequelize');
 
 const Comment = sequelize.define('comments', {
-    id: {
+    comment_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,

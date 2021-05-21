@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const sequelize = require('../DB connection/connection');
 
 const Post = sequelize.define('posts', {
-    id: {
+    post_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
