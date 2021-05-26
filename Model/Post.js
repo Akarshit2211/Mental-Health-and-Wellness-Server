@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const sequelize = require('../DB connection/connection');
 
 const Post = sequelize.define('posts', {
-    post_id: {
+    id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
@@ -19,10 +19,13 @@ const Post = sequelize.define('posts', {
     image_url: {
         type: Sequelize.STRING,
     },
-    created_at: {
+    posted_at: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
+        allowNull: false,
+        defaultValue: Sequelize.NOW()
     }
+},{
+    timestamps: false
 });
 
 module.exports = Post;

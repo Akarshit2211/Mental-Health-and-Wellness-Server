@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const sequelize = require('../DB connection/connection');
 
 const User = sequelize.define('users', {
-    user_id: {
+    id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
@@ -18,7 +18,7 @@ const User = sequelize.define('users', {
         allowNull: false
     },
     date_of_birth: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false,
     },
     gender: {
@@ -40,8 +40,11 @@ const User = sequelize.define('users', {
     },
     created_at: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
+        allowNull: false,
+        defaultValue: Sequelize.fn('NOW')
     }
+},{
+    timestamps: false
 })
 
 module.exports = User;
