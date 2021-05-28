@@ -22,6 +22,16 @@ router.post('/login', passport.authenticate('localLogin'), (req, res) => {
     res.send("<h1>logged in</h1>");
 })
 
+router.get('/googleLogin', passport.authenticate('google', {scope: ["profile"]}));
+
+router.get('/googleLogin/loggedIn', passport.authenticate('google', {failureRedirect: '/login'}), (req, res) => {
+    res.send('Logged In');
+})
+
+// router.get('/googleAuth', (req, res) => {
+//     res.send('authenticated using google');
+// })
+
 router.get('/logout', (req, res) => {
     req.session.destroy(err => {
         if (err) throw err;

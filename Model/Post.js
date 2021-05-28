@@ -19,6 +19,14 @@ const Post = sequelize.define('posts', {
     image_url: {
         type: Sequelize.STRING,
     },
+    user_id:{
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'users',
+            key: 'id'
+        }
+    },
     posted_at: {
         type: Sequelize.DATE,
         allowNull: false,

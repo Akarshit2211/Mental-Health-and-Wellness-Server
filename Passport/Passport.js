@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const faker = require('faker');
 const LocalStrategy = require('passport-local').Strategy;
+const GoogleStrategy = require('passport-google-oauth2');
 const saltRounds = 10;
 
 const localStrategies = (passport, User) => {
@@ -13,22 +14,23 @@ const localStrategies = (passport, User) => {
             passReqToCallback: true
         },
         function(req, username, password, done){
-            console.log(req);
+            // console.log(req);
             console.log(username);
-            console.log(faker.internet.UserName);
+            console.log(faker.internet.userName);
             User.findOne({where: {email_id: username}}).then(user => {
                 if(user){
                     return done(null, false, {message: 'Email already exists'});
                 }
                 if(!user){
                     let birthDate = [req.body.birthday_year, req.body.birthday_month, req.body.birthday_day].join('-');
+                    console.log( " birthday =======>>>>>>>>>" + birthDate);
                     let data = {
                         first_name: req.body.firstName,
                         last_name: req.body.lastName,
                         date_of_birth: birthDate,
-                        gender: req.body.gender,
+                        gender: 'male',
                         email_id: username,
-                        username: 'ranjan1112',
+                        username: 'ranjan',
                         password: bcrypt.hashSync(password, saltRounds, function(err, hash){
                             return hash;
                         })
@@ -43,7 +45,7 @@ const localStrategies = (passport, User) => {
                         }
                     })
                 }
-            })
+            }).catch(err=>console.log(err.message));
         }
     ));
 
@@ -71,6 +73,27 @@ const localStrategies = (passport, User) => {
                     return done(null, user);
                 }
             }).catch(err => done(err));
+        }
+    ))
+
+    //GOOGLE STRATEGY
+    passport.use('google', new GoogleStrategy(
+        {
+            clientID: process.env.CLIENT_ID,
+            clientSecret: process.env.CLIENT_SECRET,
+            callbackURL: "http://localhost:5000/api/googleLogin/loggedIn",
+            userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
+        },
+        function(accessToken, refreshToken, profile, done){
+            console.log(profile);
+            User.findOne({where: {id: profile.id}}).then(user => {
+                if(user){
+                    return done(null, false, {message: 'user already exist'});
+                }
+                if(!user){
+                    console.log(profile);
+                }
+            })
         }
     ))
 

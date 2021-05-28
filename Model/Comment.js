@@ -8,14 +8,22 @@ const Comment = sequelize.define('comments', {
         primaryKey: true,
         autoIncrement: true
     },
-    // user_id: {
-    //     type: Sequelize.INTEGER,
-    //     allowNull: false
-    // },
-    // post_id: {
-    //     type: Sequelize.INTEGER,
-    //     allowNull: false
-    // },
+    user_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'users',
+            key: 'id'
+        }
+    },
+    post_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'posts',
+            key: 'id'
+        }
+    },
     comment_text: {
         type: Sequelize.TEXT,
         allowNull: false
