@@ -9,7 +9,12 @@ Router.get('/likes', (req, res) => {
 })
 
 Router.post('/like', (req, res) => {
-    
+    Like.create({
+        post_id: postId,
+        user_id: userId
+    }).then(result => {
+        console.log(result);
+    }).catch(err => console.log(err.message));
 })
 
 module.exports = Router;

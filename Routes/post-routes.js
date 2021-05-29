@@ -17,7 +17,7 @@ const Post = require('../Model/Post');
 //     if(i>19 & i<35){
 //         Post.create({
 //             post_text: faker.lorem.sentences(),
-//             user_id: 5
+//             user_id: 2
 //         }).then(res => {
 //             console.log("done");
 //         }).catch(err => console.log(err.message));
@@ -25,7 +25,7 @@ const Post = require('../Model/Post');
 //     if(i>34){
 //         Post.create({
 //             post_text: faker.lorem.sentences(),
-//             user_id: 6
+//             user_id: 3
 //         }).then(res => {
 //             console.log("done");
 //         }).catch(err => console.log(err.message));
@@ -34,12 +34,14 @@ const Post = require('../Model/Post');
 
 router.get('/postGet', (req, res) => {
     Post.findAll().then(result => {
+        console.log(result);
         res.send(result);
     }).catch(err => console.log(err.message));
 })
 
 router.get('/userGet', (req, res) => {
     User.findAll().then(result => {
+        console.log(result);
         res.send(result);
     }).catch(err => console.log(err.message));
 })

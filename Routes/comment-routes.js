@@ -16,7 +16,7 @@ const faker = require('faker');
 //     if(i>19 & i<35){
 //         Comment.create({
 //             comment_text: faker.lorem.sentence(),
-//             user_id: 5,
+//             user_id: 2,
 //             post_id: i
 //         }).then(res => {
 //             console.log("done");
@@ -25,7 +25,7 @@ const faker = require('faker');
 //     if(i>34){
 //         Comment.create({
 //             comment_text: faker.lorem.sentence(),
-//             user_id: 6,
+//             user_id: 3,
 //             post_id: i
 //         }).then(res => {
 //             console.log("done");
@@ -40,7 +40,13 @@ Router.get('/comment', (req, res) => {
 })
 
 Router.post('/comment', (req, res) => {
-    
+    Comment.create({
+        user_id: userId,
+        post_id: postId,
+        comment_text: req.body.commentText
+    }).then(result => {
+        console.log(result);
+    }).catch(err => console.log(err.message));
 })
 
 module.exports = Router;

@@ -40,4 +40,8 @@ router.get('/logout', (req, res) => {
     })
 })
 
+router.get('/isAuth', (req, res) => {
+    res.send(req.isAuthenticated());
+})
+
 module.exports = router;

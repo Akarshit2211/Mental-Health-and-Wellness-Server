@@ -23,6 +23,10 @@ const User = sequelize.define('users', {
         allowNull: false,
         unique: true,
     },
+    confirmed: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+    },
     username: {
         type: Sequelize.STRING,
         unique: true
