@@ -45,7 +45,12 @@ router.get('/userGet', (req, res) => {
 })
 
 router.post('/post', (req, res) => {
-    
+    Post.create({
+        post_text: req.body.text,
+        user_id: userId
+    }).then(result => {
+        console.log(result);
+    }).catch(err => console.log(err.message));
 })
 
 module.exports = router;
