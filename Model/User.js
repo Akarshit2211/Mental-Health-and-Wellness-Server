@@ -1,3 +1,4 @@
+//user
 const Sequelize = require('sequelize');
 const sequelize = require('../DB connection/connection');
 
@@ -8,21 +9,14 @@ const User = sequelize.define('users', {
         allowNull: false,
         primaryKey: true
     },
-    first_name: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    last_name: {
-        type: Sequelize.STRING,
-        allowNull: false
+    google_id: {
+        type: Sequelize.TEXT
     },
     date_of_birth: {
-        type: Sequelize.DATE,
-        allowNull: false,
+        type: Sequelize.DATEONLY,
     },
     gender: {
         type: Sequelize.STRING,
-        allowNull: false,
     },
     email_id: {
         type: Sequelize.STRING,
@@ -31,7 +25,6 @@ const User = sequelize.define('users', {
     },
     username: {
         type: Sequelize.STRING,
-        allowNull: false,
         unique: true
     },
     password: {
@@ -39,8 +32,11 @@ const User = sequelize.define('users', {
     },
     created_at: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
+        allowNull: false,
+        defaultValue: Sequelize.fn('NOW')
     }
+},{
+    timestamps: false
 })
 
 module.exports = User;

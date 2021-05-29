@@ -1,6 +1,0 @@
-POST http://localhost:5000/api/something
-Content-type: application/json
-
-{
-    "something": "ijjljsldf"
-}

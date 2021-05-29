@@ -1,22 +1,19 @@
-const mysql = require('mysql');
+const Sequelize = require('sequelize');
 
-//making a connection to mysql database
-const mysqlconnection = mysql.createConnection({
-    host: 'b7q5bcdhzktuy4yauwey-mysql.services.clever-cloud.com',
-    user: 'umjofxv0cyfoxu6a',
-    password: 'ttMD3fchh94pq4QGrJzv',
-    database: 'b7q5bcdhzktuy4yauwey',
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
+    dialect: 'mysql',
+    host: process.env.DB_HOST,
     multipleStatements: true
 });
 
-//verifying if the connection is established
-mysqlconnection.connect((err) => {
-    if(!err){
-        console.log('Connected');
-    }
-    else{
-        console.log('Not Connected' + err.message);
-    }
-});
 
-module.exports = mysqlconnection;
+module.exports = sequelize;
+
+
+
+
+// const sequelize = new Sequelize('mentalhealthsocialdb', 'root', 'Onepunchman', {
+//     dialect: 'mysql',
+//     host: 'localhost',
+//     multipleStatements: true
+// });

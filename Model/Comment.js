@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = require('sequelize');
+const sequelize = require('../DB connection/connection');
 
 const Comment = sequelize.define('comments', {
     id: {
@@ -10,20 +10,32 @@ const Comment = sequelize.define('comments', {
     },
     user_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+            model: 'users',
+            key: 'id'
+        }
     },
     post_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+            model: 'posts',
+            key: 'id'
+        }
     },
     comment_text: {
         type: Sequelize.TEXT,
         allowNull: false
     },
-    created_at: {
+    commented_at: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
+        allowNull: false,
+        defaultValue: Sequelize.NOW()
     }
-})
+},{
+    timestamps: false
+}
+)
 
 module.exports = Comment;
