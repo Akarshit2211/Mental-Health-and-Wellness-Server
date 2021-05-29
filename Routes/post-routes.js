@@ -34,13 +34,14 @@ const Post = require('../Model/Post');
 
 router.get('/postGet', (req, res) => {
     Post.findAll().then(result => {
-        let posts = result;
-        res.send(posts);
-    })
+        res.send(result);
+    }).catch(err => console.log(err.message));
+})
+
+router.get('/userGet', (req, res) => {
     User.findAll().then(result => {
-        let users = result;
-        res.send(users);
-    })
+        res.send(result);
+    }).catch(err => console.log(err.message));
 })
 
 router.post('/post', (req, res) => {
