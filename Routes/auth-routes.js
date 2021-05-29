@@ -17,9 +17,10 @@ router.post('/signup', passport.authenticate('localSignup'), (req, res) => {
 })
 
 router.post('/login', passport.authenticate('localLogin'), (req, res) => {
-    console.log(user);
-    res.send(user);
-    res.send("<h1>logged in</h1>");
+    console.log(req);
+    // console.log(user);
+    // res.send(user);
+    // res.send("<h1>logged in</h1>");
 })
 
 router.get('/googleLogin', passport.authenticate('google', {scope: ["profile"]}));

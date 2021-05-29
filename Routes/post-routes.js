@@ -34,8 +34,12 @@ const Post = require('../Model/Post');
 
 router.get('/postGet', (req, res) => {
     Post.findAll().then(result => {
-        console.log(result);
-        res.jsonp(result);
+        let posts = result;
+        res.send(posts);
+    })
+    User.findAll().then(result => {
+        let users = result;
+        res.send(users);
     })
 })
 

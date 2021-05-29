@@ -37,7 +37,7 @@ app.use(passport.session()); //specifying that passport will handle the sessions
 passportLocalStrategies(passport, User);
 
 //Routes
-app.use('/api/' ,authUrls);
+app.use('/api', authUrls);
 app.use('/api', postRoutes);
 app.use('/api', commentRoutes);
 app.use('/api', likesRoutes);
